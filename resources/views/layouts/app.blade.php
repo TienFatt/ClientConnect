@@ -15,6 +15,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+		<style>
+			select.dt-input{
+				padding-right:30px !important;
+			}
+		</style>
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -34,12 +39,17 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+			@if(isset($slot))
+				{{ $slot }}
+			@else
+				@yield('content')
+			@endif
             </main>
         </div>
 
         @stack('modals')
 
         @livewireScripts
+		@stack('scripts')
     </body>
 </html>
